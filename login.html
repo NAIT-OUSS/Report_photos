@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Connexion</title>
+</head>
+<body>
+  <h1>Se connecter</h1>
+  <input id="email" type="email" placeholder="you@email.com" />
+  <input id="password" type="password" placeholder="mot de passe" />
+  <button id="signin">Connexion</button>
+  <button id="signup">Créer un compte</button>
+
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+    const SUPABASE_URL  = "https://nait-ouss.github.io/Report_photos/"
+    const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4dGh6d2tzZmV1bGxtcmJqcnNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc1MDkzODAsImV4cCI6MjA3MzA4NTM4MH0.FAkLXX0bdv31-lKHzqTtDXMWAJDlavO45bNjn7w2Uh4"
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON)
+
+    document.querySelector('#signin').onclick = async () => {
+      const email = document.querySelector('#email').value
+      const pass = document.querySelector('#password').value
+      const { error } = await supabase.auth.signInWithPassword({ email, password: pass })
+      if(error) alert(error.message)
+      else location.href = "./index.html"
+    }
+
+    document.querySelector('#signup').onclick = async () => {
+      const email = document.querySelector('#email').value
+      const pass = document.querySelector('#password').value
+      const { error } = await supabase.auth.signUp({ email, password: pass })
+      if(error) alert(error.message)
+      else alert("Compte créé, vérifie tes mails")
+    }
+  </script>
+</body>
+</html>
