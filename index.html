@@ -1088,5 +1088,13 @@
 
     function ts(){ return new Date().toISOString().replace(/:/g,'-').replace(/\./g, '-'); }
   </script>
+  <script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+  const supabase = createClient("https://nait-ouss.github.io/Report_photos/","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4dGh6d2tzZmV1bGxtcmJqcnNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc1MDkzODAsImV4cCI6MjA3MzA4NTM4MH0.FAkLXX0bdv31-lKHzqTtDXMWAJDlavO45bNjn7w2Uh4")
+  const { data: { session } } = await supabase.auth.getSession()
+  if (!session) location.href = "./login.html"
+</script>
+
 </body>
 </html>
+
