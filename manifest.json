@@ -1,6 +1,6 @@
 {
-  "name": "Reportage Photos Chantier",
-  "short_name": "PhotosChantier",
+  "name": "SnapReport",
+  "short_name": "SnapReport",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#04243c",
